@@ -1,0 +1,55 @@
+<?php
+    require './src/views/layout/header.php';
+?>
+
+<div class="container mt-5">
+    <form action="update" method="post" class="form form-update">
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="id" value="<?php echo $work[0]->id ?>">
+        <h3 class="mb-5">Edit todo item</h3>
+        <div class="mb-3">
+            <label for="work_name" class="form-label">Work name</label>
+            <input type="text" name="work_name" class="form-control" id="work_name"
+                value="<?php echo $work[0]->work_name ?>"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="start_at" class="form-label">Start date</label>
+            <div class="input-group date date-picker">
+                <input class="form-control" id="start_at" name="start_at"
+                    value="<?php echo $work[0]->start_at ?>"
+                />
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="end_at" class="form-label">End date</label>
+            <div class="input-group date date-picker">
+                <input id="end_at" class="form-control" name="end_at"
+                    value="<?php echo $work[0]->end_at ?>"
+                />
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </span>
+            </div>
+        </div>
+        <div class="mb-5">
+            <label for="work_name" class="form-label">Status</label>
+            <select class="custom-select custom-select-sm btn my-2 ms-2" name="status">
+                <?php foreach ($config['status'] as $key => $value) : ?>
+                    <option value="<?php echo $key ?>" <?php echo $work[0]->status == $key ? 'selected' : '' ?>>
+                        <?php echo $value ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <button type="button" class="btn btn-primary btn-update">Update</button>
+        <button type="button" class="btn btn-warning btn-back">Back</button>
+    </form>
+</div>
+
+<?php
+    require './src/views/layout/footer.php';
+?>

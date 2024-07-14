@@ -2,10 +2,22 @@
 
 class Connection
 {
-    public static function make()
+    /**
+     * Connection database
+     *
+     * @param array $config
+     *
+     */
+    public static function make(array $config)
     {
         try {
-            return new PDO("mysql:host=localhost;dbname=php_test_nals", 'root', '');
+            $db       = $config['connections']['mysql']['driver'];
+            $host     = $config['connections']['mysql']['host'];
+            $database = $config['connections']['mysql']['database'];
+            $username = $config['connections']['mysql']['username'];
+            $password = $config['connections']['mysql']['password'];
+
+            return new PDO("$db:host=$host;dbname=$database", $username, $password);
         } catch (\Throwable $th) {
             Log::logException($th);
         }

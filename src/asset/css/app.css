@@ -1,36 +1,14 @@
-body {
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.6;
+.form {
+    width: 50%;
+    margin: auto;
 }
 
-.add-todo-input,
-.edit-todo-input {
-    outline: none;
+.box-action,
+.pagination-main {
+    display: flex;
+    justify-content: center;
 }
 
-.add-todo-input:focus,
-.edit-todo-input:focus {
-    border: none !important;
-    box-shadow: none !important;
-}
-
-.view-opt-label,
-.date-label {
-    font-size: 0.8rem;
-}
-
-.edit-todo-input {
-    font-size: 1.7rem !important;
-}
-
-.todo-actions {
-    visibility: hidden !important;
-}
-
-.todo-item:hover .todo-actions {
-    visibility: visible !important;
-}
-
-.todo-item.editing .todo-actions .edit-icon {
-    display: none !important;
+.text-decoration {
+    text-decoration: line-through;
 }

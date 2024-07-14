@@ -1,0 +1,5 @@
+[2024-07-14 15:57:35] [ERROR] Path url notfound
+[2024-07-14 17:48:44] [ERROR] Path url notfound
+[2024-07-14 17:49:39] [ERROR] Path url notfound
+[2024-07-14 17:50:07] [ERROR] Path url notfound
+[2024-07-14 19:15:13] [ERROR] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '00:15:06 AND 2024/07/26 00:15:09' at line 3 {"file":"D:\\xampp\\htdocs\\php_test_nals\\src\\models\\Work.php","line":167,"trace":"#0 D:\\xampp\\htdocs\\php_test_nals\\src\\models\\Work.php(167): PDOStatement->execute()\n#1 D:\\xampp\\htdocs\\php_test_nals\\src\\controllers\\WorkController.php(220): Work->dateWorking('2024\/07\/01 00:1...', '2024\/07\/26 00:1...')\n#2 D:\\xampp\\htdocs\\php_test_nals\\src\\config\\Router.php(30): WorkController->dateWorking()\n#3 D:\\xampp\\htdocs\\php_test_nals\\index.php(46): Router->direct('date_working', 'GET')\n#4 {main}"}

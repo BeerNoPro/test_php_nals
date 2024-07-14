@@ -1,30 +1,44 @@
 <?php
 
-require 'src/config/Log.php';
-require 'src/config/Connection.php';
-require 'src/models/Work.php';
+require './src/public/bootstrap.php';
 
-$pdo = Connection::make();
+$router = new Router();
 
-$work = new Work($pdo);
+require 'src/router/routers.php';
 
-$works = $work->getData();
+$base_uri = trim($_SERVER['REQUEST_URI'], '/');
+$uri      = explode('/', $base_uri);
+$method   = $_SERVER['REQUEST_METHOD'];
+$chk_uri  = isset($uri[1]) ? $uri[1] : '';
 
-// $dateNow  = new DateTime();
-// $start_at = $dateNow->format('Y-m-d H:i:s');
-// $end_at   = $dateNow->modify('+2 days')->format('Y-m-d H:i:s');
+if (isset($_GET['id'])) {
+    $method  = 'GET';
+    $chk_uri = 'edit';
+}
 
-// $rsCreate = $work->insert(
-//     'demo 3',
-//     $start_at,
-//     $end_at,
-//     0
-// );
+if (isset($_GET['status'])) {
+    $method  = 'GET';
+    $chk_uri = 'search';
+}
 
-// if ($rsCreate) {
-//     echo 'oke';
-// } else {
-//     echo 'error';
-// }
+if (isset($_GET['column']) && isset($_GET['type'])) {
+    $method  = 'GET';
+    $chk_uri = 'search_date';
+}
 
-require './src/views/index.php';
+if (isset($_GET['start_date']) && isset($_GET['end_date'])) {
+    $method  = 'GET';
+    $chk_uri = 'date_working';
+}
+
+if (isset($_POST['_method'])) {
+    if ($_POST['_method'] == 'delete') {
+        $method = 'DELETE';
+    }
+
+    if ($_POST['_method'] == 'put') {
+        $method = 'PUT';
+    }
+}
+
+$router->direct($chk_uri, $method);
